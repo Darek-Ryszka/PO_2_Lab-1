@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,17 +54,6 @@ class Product {
     public double getTotalBrutto() {
         return totalBrutto;
     }
-
-    // displayFormat
-//    public static void displayFormat() {
-//        System.out.print(
-//                "\nID:      Cena:    Ilość:   VAT(%):   Całkowita wartość Netto:    Wartość podatku VAT:    Suma Brutto:    \n");
-//    }
-
-//     display
-//    public void display() {
-//        System.out.format("%2d %10.2f %5d %2f %10.2f %10.2f %10.2f\n", id, a, x, p, totalNetto, totalVAT, totalBrutto);
-//    }
 }
 
     public class Main {
@@ -183,41 +173,31 @@ class Product {
                             l1.addElement("####################################");
                             l1.addElement("\n");
                             l1.addElement("Produkt: " +  i.getId());
-                            l1.addElement("Cena netto za sztukę: " +  String.format("%2f",i.getCena()));
-                            l1.addElement("Wysokość stawki VAT w %: " +  String.format("%2f",i.getVAT()));
+                            l1.addElement("Cena netto za sztukę: " +  String.format("%.2f",i.getCena()));
+                            l1.addElement("Wysokość stawki VAT w %: " +  String.format("%.2f",i.getVAT()));
                             l1.addElement("Liczba sztuk: " +  String.format("%d",i.getIlość()));
                             l1.addElement("\n");
-//                            l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
-//                            l1.addElement("\n");
-//                            l1.addElement("Wartość netto: " +  String.format("%2f", overAllPriceNetto));
-//                            l1.addElement("Wartość VAT: " +  String.format("%2f", overAllPriceVAT));
-//                            l1.addElement("\n");
-//                            l1.addElement("Wartość brutto: " +  String.format("%2f", overAllPriceBrutto));
-//                            l1.addElement("Wartość netto: " +  String.format("%2f",i.getTotalNetto()));
-//                            l1.addElement("Wartość VAT: " +  String.format("%2f",i.getTotalVAT()));
-//                            l1.addElement("\n");
-//                            l1.addElement("Wartość brutto: " +  String.format("%2f",i.getTotalBrutto()));
-//                            l1.addElement("####################################");
                         }
                         l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
                         l1.addElement("\n");
-                        l1.addElement("Wartość netto: " +  String.format("%2f", overAllPriceNetto));
-                        l1.addElement("Wartość VAT: " +  String.format("%2f", overAllPriceVAT));
+                        l1.addElement("Wartość netto: " +  String.format("%.2f", overAllPriceNetto));
+                        l1.addElement("Wartość VAT: " +  String.format("%.2f", overAllPriceVAT));
                         l1.addElement("\n");
-                        l1.addElement("Wartość brutto: " +  String.format("%2f", overAllPriceBrutto));
+                        l1.addElement("Wartość brutto: " +  String.format("%.2f", overAllPriceBrutto));
                         l1.addElement("\n");
                         l1.addElement("-------------------------------------");
 
                         JList<String> list = new JList<>(l1);
 
-                        JFrame f;
-                        f =new JFrame();
-                        f.setTitle("Rachunek");
-                        f.setLocationRelativeTo(null);
-                        f.setSize(800,800);
-//                        JScrollPane pane = new JScrollPane();
+//                        JScrollPane scroll = new JScrollPane(list);
 
-                        JOptionPane.showMessageDialog(f, list);
+//                        JFrame f =new JFrame();
+//                        f.setTitle("Rachunek");
+//                        f.setSize(150, 300);
+//                        f.setLocationRelativeTo(null);
+//                        f.setVisible(true);
+
+                        JOptionPane.showMessageDialog(null, list);
 
                         break;
 
