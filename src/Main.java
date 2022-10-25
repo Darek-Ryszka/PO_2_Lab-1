@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.*;
+import javax.swing.text.Document;
 
 class Product {
     // properties
@@ -114,91 +115,39 @@ class Product {
                         break;
 
                     case 2:
-
-//                    Rozwiązanie 1 - Wyświetla jako ciąg znaków
-
-//                    for (Product i : product){
-//                    JOptionPane.showMessageDialog(null, "Produkt: " + i.getId()
-//                    + "\nCena netto za sztukę: " + String.format("%2f",i.getCena())
-//                    + "\nWysokość stawki VAT w %: " + String.format("%2f",i.getVAT())
-//                    + "\nLiczba sztuk: " + String.format("%d",i.getIlość())
-//                    + "\nWartość netto: " + String.format("%2f",i.getTotalNetto())
-//                    + "\nWartość VAT: " + String.format("%2f",i.getTotalVAT())
-//                    + "\nWartość brutto: " + String.format("%2f",i.getTotalBrutto()),
-//                    "Rachunek" ,JOptionPane.INFORMATION_MESSAGE);
-//                    }
-
-//                    Rozwiązanie 2
-
-//                        JFrame f= new JFrame();
-//                        f.setTitle("Rachunek");
-//
-//
-//                        DefaultListModel<String> l1 = new DefaultListModel<>();
-//
-//                        for (Product i : product){
-//                            l1.addElement("####################################");
-//                            l1.addElement("Produkt: " +  i.getId());
-//                            l1.addElement("Cena netto za sztukę: " +  String.format("%2f",i.getCena()));
-//                            l1.addElement("Wysokość stawki VAT w %: " +  String.format("%2f",i.getVAT()));
-//                            l1.addElement("Liczba sztuk: " +  String.format("%d",i.getIlość()));
-//                            l1.addElement("\n");
-//                            l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
-//                            l1.addElement("\n");
-//                            l1.addElement("Wartość netto: " +  String.format("%2f",i.getTotalNetto()));
-//                            l1.addElement("Wartość VAT: " +  String.format("%2f",i.getTotalVAT()));
-//                            l1.addElement("\n");
-//                            l1.addElement("Wartość brutto: " +  String.format("%2f",i.getTotalBrutto()));
-//                            l1.addElement("####################################");
-//                        }
-//                        JList<String> list = new JList<>(l1);
-//
-//                        list.setBounds(0,0, 400,400);
-//                        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//                        list.setLayoutOrientation(JList.VERTICAL);
-//
-////                        f.add(scroll);
-//                        f.add(list);
-//                        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                        f.setSize(800,800);
-//                        f.setLayout(null);
-//                        f.setVisible(true);
-//                        f.setLocationRelativeTo(null);
-
-//                    Rozwiązanie 3
-
                         DefaultListModel<String> l1 = new DefaultListModel<>();
 
                         for (Product i : product){
-                            l1.addElement("####################################");
+                            l1.addElement("\n####################################");
                             l1.addElement("\n");
-                            l1.addElement("Produkt: " +  i.getId());
-                            l1.addElement("Cena netto za sztukę: " +  String.format("%.2f",i.getCena()));
-                            l1.addElement("Wysokość stawki VAT w %: " +  String.format("%.2f",i.getVAT()));
-                            l1.addElement("Liczba sztuk: " +  String.format("%d",i.getIlość()));
+                            l1.addElement("\nProdukt: " +  i.getId());
+                            l1.addElement("\nCena netto za sztukę: " +  String.format("%.2f",i.getCena()));
+                            l1.addElement("\nWysokość stawki VAT w %: " +  String.format("%.2f",i.getVAT()));
+                            l1.addElement("\nLiczba sztuk: " +  String.format("%d",i.getIlość()));
                             l1.addElement("\n");
                         }
-                        l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
+                        l1.addElement("\n<<<<< PODSUMOWANIE RACHUNKU >>>>>");
                         l1.addElement("\n");
-                        l1.addElement("Wartość netto: " +  String.format("%.2f", overAllPriceNetto));
-                        l1.addElement("Wartość VAT: " +  String.format("%.2f", overAllPriceVAT));
+                        l1.addElement("\nWartość netto: " +  String.format("%.2f", overAllPriceNetto));
+                        l1.addElement("\nWartość VAT: " +  String.format("%.2f", overAllPriceVAT));
                         l1.addElement("\n");
-                        l1.addElement("Wartość brutto: " +  String.format("%.2f", overAllPriceBrutto));
+                        l1.addElement("\nWartość brutto: " +  String.format("%.2f", overAllPriceBrutto));
                         l1.addElement("\n");
-                        l1.addElement("-------------------------------------");
 
                         JList<String> list = new JList<>(l1);
 
-//                        JScrollPane scroll = new JScrollPane(list);
+                        JTextArea tx = new JTextArea();
+                        for (int i = 0; i < list.getModel().getSize(); i++ ) {
+                            tx.append(list.getModel().getElementAt(i));
+                        }
 
-//                        JFrame f =new JFrame();
-//                        f.setTitle("Rachunek");
-//                        f.setSize(150, 300);
-//                        f.setLocationRelativeTo(null);
-//                        f.setVisible(true);
+                        JScrollPane sc = new JScrollPane(tx);
+                        tx.setLineWrap(true);
+                        tx.setWrapStyleWord(true);
+                        sc.setPreferredSize(new Dimension(260,400));
 
-                        JOptionPane.showMessageDialog(null, list);
-
+                        JOptionPane.showMessageDialog(null, sc, "Rachunek", JOptionPane.INFORMATION_MESSAGE );
+//                        JOptionPane.showMessageDialog(null, list, "Rachunek", JOptionPane.INFORMATION_MESSAGE );
                         break;
 
                     case 3:
