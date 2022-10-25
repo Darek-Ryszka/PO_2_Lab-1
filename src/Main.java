@@ -77,6 +77,9 @@ class Product {
             float totalNetto = 0;
             float totalVAT = 0;
             float totalBrutto = 0;
+            float overAllPriceNetto = 0;
+            float overAllPriceVAT = 0;
+            float overAllPriceBrutto = 0;
 
             Scanner scan = new Scanner(System.in);
 
@@ -115,6 +118,9 @@ class Product {
 
                         product.add(new Product(id, a, x, p, totalNetto, totalVAT, totalBrutto));
 
+                        overAllPriceNetto += totalNetto;
+                        overAllPriceVAT += totalVAT;
+                        overAllPriceBrutto += totalBrutto;
                         break;
 
                     case 2:
@@ -175,20 +181,33 @@ class Product {
 
                         for (Product i : product){
                             l1.addElement("####################################");
+                            l1.addElement("\n");
                             l1.addElement("Produkt: " +  i.getId());
                             l1.addElement("Cena netto za sztukę: " +  String.format("%2f",i.getCena()));
                             l1.addElement("Wysokość stawki VAT w %: " +  String.format("%2f",i.getVAT()));
                             l1.addElement("Liczba sztuk: " +  String.format("%d",i.getIlość()));
                             l1.addElement("\n");
-                            l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
-                            l1.addElement("\n");
-                            l1.addElement("Wartość netto: " +  String.format("%2f",i.getTotalNetto()));
-                            l1.addElement("Wartość VAT: " +  String.format("%2f",i.getTotalVAT()));
-                            l1.addElement("\n");
-                            l1.addElement("Wartość brutto: " +  String.format("%2f",i.getTotalBrutto()));
-                            l1.addElement("####################################");
-                            l1.addElement("\n");
+//                            l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
+//                            l1.addElement("\n");
+//                            l1.addElement("Wartość netto: " +  String.format("%2f", overAllPriceNetto));
+//                            l1.addElement("Wartość VAT: " +  String.format("%2f", overAllPriceVAT));
+//                            l1.addElement("\n");
+//                            l1.addElement("Wartość brutto: " +  String.format("%2f", overAllPriceBrutto));
+//                            l1.addElement("Wartość netto: " +  String.format("%2f",i.getTotalNetto()));
+//                            l1.addElement("Wartość VAT: " +  String.format("%2f",i.getTotalVAT()));
+//                            l1.addElement("\n");
+//                            l1.addElement("Wartość brutto: " +  String.format("%2f",i.getTotalBrutto()));
+//                            l1.addElement("####################################");
                         }
+                        l1.addElement("------- PODSUMOWANIE RACHUNKU -------");
+                        l1.addElement("\n");
+                        l1.addElement("Wartość netto: " +  String.format("%2f", overAllPriceNetto));
+                        l1.addElement("Wartość VAT: " +  String.format("%2f", overAllPriceVAT));
+                        l1.addElement("\n");
+                        l1.addElement("Wartość brutto: " +  String.format("%2f", overAllPriceBrutto));
+                        l1.addElement("\n");
+                        l1.addElement("-------------------------------------");
+
                         JList<String> list = new JList<>(l1);
 
                         JFrame f;
