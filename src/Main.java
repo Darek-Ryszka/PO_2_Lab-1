@@ -152,7 +152,7 @@ class Product {
                         System.exit(0);
 
                     default:
-                        JOptionPane.showMessageDialog(null, "Błędna wartość !!! Proszę wybrać numer 1,2 lub 3", "tytuł", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Błędna wartość !!! Proszę wybrać numer 1,2 lub 3", "Niewłaściwa wartość", JOptionPane.PLAIN_MESSAGE);
                 }
             }
         }
