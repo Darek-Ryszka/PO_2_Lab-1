@@ -146,7 +146,6 @@ class Product {
                         sc.setPreferredSize(new Dimension(260,400));
 
                         JOptionPane.showMessageDialog(null, sc, "Rachunek", JOptionPane.INFORMATION_MESSAGE );
-//                        JOptionPane.showMessageDialog(null, list, "Rachunek", JOptionPane.INFORMATION_MESSAGE );
                         break;
 
                     case 3:
