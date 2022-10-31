@@ -5,7 +5,7 @@ import java.util.Scanner;
 import javax.swing.*;
 
 class Product {
-    // properties
+    // Właściwości klasy
     private int id;
     private double a; //cena
     private int x; //ilość
@@ -15,7 +15,7 @@ class Product {
     private double totalBrutto;
 
 
-    // constructor
+    // Konstruktor
     Product(int id, double a, int x, float p, double totalNetto, double totalVAT, double totalBrutto) {
         this.id = id;
         this.a = a;
@@ -26,7 +26,7 @@ class Product {
         this.totalBrutto = totalBrutto;
     }
 
-    // getter methods
+    // Metody getter
     public int getId() {
         return id;
     }
@@ -60,10 +60,12 @@ class Product {
 
         public static void main(String[] args) {
 
-            int id = 0;
-            float a = 0;
-            int x = 0;
-            float p = 0;
+            // Deklaracja zmiennych
+
+            int id = 0; // Numer produktu
+            float a = 0; // Cena netto za sztukę
+            int x = 0; // Liczba sztuk produktu
+            float p = 0; // Wysokość stawki VAT
             float totalNetto = 0;
             float totalVAT = 0;
             float totalBrutto = 0;
@@ -73,9 +75,10 @@ class Product {
 
             Scanner scan = new Scanner(System.in);
 
+            // Zadeklarowanie nowej listy obiektów
             List<Product> product = new ArrayList<>();
 
-            //menu
+            // Menu bazujące na switch-ach, zawarte w pętli while
             while (true) {
                 System.out.println();
                 System.out.println("****************************************");
@@ -100,22 +103,24 @@ class Product {
                         String value3 = JOptionPane.showInputDialog("Liczba sztuk: ");
                         x = Integer.parseInt(value3);
 
-                        totalNetto = a * x;
-                        totalVAT = (p / 100) * a * x;
-                        totalBrutto = totalNetto + totalVAT;
+                        totalNetto = a * x; // Cena netto za sztukę, pomnożona przez liczbę sztuk na rachunku
+                        totalVAT = (p / 100) * a * x; // Wysokość stawki VAT obliczona na podstawie ceny netto za sztukę, przemnożonej przez ilość sztuk
+                        totalBrutto = totalNetto + totalVAT; // Wyskość ceny brutto produktu
 
-                        id++;
+                        id++; // Inkrementacja id produktu
 
-                        product.add(new Product(id, a, x, p, totalNetto, totalVAT, totalBrutto));
+                        product.add(new Product(id, a, x, p, totalNetto, totalVAT, totalBrutto)); // Dodanie (obiektu) produktu do listy "product"
 
-                        overAllPriceNetto += totalNetto;
-                        overAllPriceVAT += totalVAT;
-                        overAllPriceBrutto += totalBrutto;
+                        overAllPriceNetto += totalNetto; // Sumownaie całkowietej wartości netto dla wszystkich produktów na rachunku
+                        overAllPriceVAT += totalVAT; // Sumownaie całkowietej wartości VAT dla wszystkich produktów na rachunku
+                        overAllPriceBrutto += totalBrutto; // Sumownaie całkowietej wartości brutto dla wszystkich produktów na rachunku
                         break;
 
                     case 2:
+                        // Tworzenie listy zawierającej elementy typu String dla każdego elementu obiektu stworzonego na podstawie klasy "Product"
                         DefaultListModel<String> l1 = new DefaultListModel<>();
 
+                        // Pętla iterująca po każdym elemencie i każdym obiekcie na liście "product" i dodająca dane do list l1 typu String
                         for (Product i : product){
                             l1.addElement("\n####################################");
                             l1.addElement("\n");
@@ -125,6 +130,7 @@ class Product {
                             l1.addElement("\nLiczba sztuk: " +  String.format("%d",i.getIlość()));
                             l1.addElement("\n");
                         }
+                        // Dane wyświetlane poza pętlą, dla całego rachunku
                         l1.addElement("\n<<<<< PODSUMOWANIE RACHUNKU >>>>>");
                         l1.addElement("\n");
                         l1.addElement("\nWartość netto: " +  String.format("%.2f", overAllPriceNetto));
@@ -133,25 +139,31 @@ class Product {
                         l1.addElement("\nWartość brutto: " +  String.format("%.2f", overAllPriceBrutto));
                         l1.addElement("\n");
 
+                        // Tworzenie JListy z elementami typu String w celu dodania zawartośći do JTextArea i możliwości iteracji
                         JList<String> list = new JList<>(l1);
 
+                        // Stworzenie pola tekstowego, iteracja po obiektach i elementach tych obiektów w zależności od długości listy i dodanie ich do pola tekstowego
                         JTextArea tx = new JTextArea();
                         for (int i = 0; i < list.getModel().getSize(); i++ ) {
                             tx.append(list.getModel().getElementAt(i));
                         }
 
+                        // Dodanie stałych wymiarów okna podsumowania rachunku i suwaka w przypadku przekroczenia możliwości wyświetlenia danych w polu tekstowym
                         JScrollPane sc = new JScrollPane(tx);
                         tx.setLineWrap(true);
                         tx.setWrapStyleWord(true);
                         sc.setPreferredSize(new Dimension(260,400));
 
+                        // Wyświetlenie wiadomości
                         JOptionPane.showMessageDialog(null, sc, "Rachunek", JOptionPane.INFORMATION_MESSAGE );
                         break;
 
                     case 3:
+                        // Wyjście z programu
                         System.exit(0);
 
                     default:
+                        // Informacja o niewłaściwym numerze podanym w menu
                         JOptionPane.showMessageDialog(null, "Błędna wartość !!! Proszę wybrać numer 1,2 lub 3", "Niewłaściwa wartość", JOptionPane.PLAIN_MESSAGE);
                 }
             }
